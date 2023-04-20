@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <title>RentMyCar - Aktualna Oferta</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel=""
+</head>
+<body>
+  <header>
+    <img src="img/logo.png" alt="Logo">
+    <nav>
+      <ul>
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="aktoferty.html">Aktualna oferta</a></li>
+        <li><a href="addoferte.html">Dodaj oferte</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section>
+      <section>
+        <!-- Formularz kontaktowy -->
+        <div class="contact-form">
+          <h3>Formularz zgłoszeniowy</h3>
+          <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
+          <asp:Panel ID="pnlForm" runat="server">
+              <asp:TextBox ID="txtName" runat="server" placeholder="Imię i nazwisko" CssClass="input"></asp:TextBox>
+              <asp:TextBox ID="txtEmail" runat="server" placeholder="E-mail" CssClass="input"></asp:TextBox>
+              <asp:TextBox ID="txtSubject" runat="server" placeholder="Temat" CssClass="input"></asp:TextBox>
+              <asp:TextBox ID="txtMessage" runat="server" placeholder="Treść wiadomości" TextMode="MultiLine" CssClass="textarea"></asp:TextBox>
+              <asp:FileUpload ID="fileAttachment" runat="server" CssClass="file-upload" />
+              <asp:Button ID="btnSubmit" runat="server" Text="Wyślij" CssClass="button" OnClick="btnSubmit_Click" />
+          </asp:Panel>
+        </div>
+        <!-- <h2>Wynajem samochodu</h2>
+        <form action="zgloszenie.php" method="POST" enctype="multipart/form-data">
+          <label for="marka">Marka samochodu:</label>
+          <input type="text" name="marka" id="marka" required>
+          <br>
+          <label for="model">Model samochodu:</label>
+          <input type="text" name="model" id="model" required>
+          <br>
+          <label for="zdjecie">Zdjęcie samochodu:</label>
+          <input type="file" name="zdjecie" id="zdjecie" accept="image/*" required>
+          <br>
+          <label for="rok">Rok produkcji:</label>
+          <input type="number" name="rok" id="rok" required>
+          <br>
+          <label for="cena">Cena za dzień wynajmu:</label>
+          <input type="number" name="cena" id="cena" required>
+          <br>
+          <label for="opis">Opis samochodu:</label>
+          <textarea name="opis" id="opis" required></textarea>
+          <br>
+          <input type="submit" value="Wyślij zgłoszenie">
+        </form> -->
+    </section>
+  </main>
+  
+  <footer>
+    &copy; 2023 RentMyCar
+  </footer>
+</body>
+</html>
