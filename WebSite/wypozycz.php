@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($conn->query($sql) === TRUE) {
         echo "Rekord dodany poprawnie";
-        header("Location: addoferte.html");
+        echo "<script>setTimeout(function(){window.location.href='addoferte.html'}, 3000);</script>";
         exit();
     } else {
         echo "Błąd dodawania rekordu: " . $conn->error;
