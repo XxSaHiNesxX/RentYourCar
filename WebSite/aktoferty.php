@@ -14,7 +14,7 @@ if($conn->connect_error) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 <head>
   <link rel="stylesheet" href="css/style.css">
   <title>RentMyCar - Aktualna Oferta</title>
@@ -50,10 +50,17 @@ if($conn->connect_error) {
             <article>
               <h3><?= isset($data['marka']) ? $data['marka'] : '' ?></h3>
               <img src="<?= isset($data['zdjecie']) ? $data['zdjecie'] : '' ?>" alt="Zdjęcie">
-              <p>Koszt: <?= isset($data['koszt']) ? $data['koszt'] : '' ?></p>
-              <p>Data: <?= isset($data['data']) ? $data['data'] : '' ?></p>
-              <p>Kontakt: <?= isset($data['kontakt']) ? $data['kontakt'] : '' ?></p>
-              <p><?= isset($data['opis']) ? $data['opis'] : '' ?></p>
+              <p>Moc: <?= isset($data['moc']) ? $data['moc'] : '' ?></p>
+              <p>Pojemność skokowa (silnik): <?= isset($data['pojemnosc']) ? $data['pojemnosc'] : '' ?></p>
+              <p>Rodzaj paliwa: <?= isset($data['paliwo']) ? $data['paliwo'] : '' ?></p>
+              <p>Skrzynia biegów: <?= isset($data['skrzynia']) ? $data['skrzynia'] : '' ?></p>
+              <p>Napęd: <?= isset($data['naped']) ? $data['naped'] : '' ?></p>
+              <p>Rok produkcji: <?= isset($data['rokprodukcji']) ? $data['rokprodukcji'] : '' ?></p>
+              <p>Dodatkowe informacje: <?= isset($data['opis']) ? $data['opis'] : '' ?></p>
+              <form method="POST" action="wynajmnij.php">
+                <input type="hidden" name="marka" value="<?= isset($data['marka']) ? $data['marka'] : '' ?>">
+                <button type="submit">Zarezerwuj</button>
+              </form>
             </article>
             <hr> <!-- Przerwa między artykułami -->
         <?php

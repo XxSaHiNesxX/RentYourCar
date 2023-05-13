@@ -23,33 +23,43 @@
   <main>
     <section>
       <section>
-        <!-- Formularz kontaktowy
-        <div class="contact-form">
-          <h3>Formularz zgłoszeniowy</h3>
-          <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label>
-          <asp:Panel ID="pnlForm" runat="server">
-              <asp:TextBox ID="txtName" runat="server" placeholder="Imię i nazwisko" CssClass="input"></asp:TextBox>
-              <asp:TextBox ID="txtEmail" runat="server" placeholder="E-mail" CssClass="input"></asp:TextBox>
-              <asp:TextBox ID="txtSubject" runat="server" placeholder="Temat" CssClass="input"></asp:TextBox>
-              <asp:TextBox ID="txtMessage" runat="server" placeholder="Treść wiadomości" TextMode="MultiLine" CssClass="textarea"></asp:TextBox>
-              <asp:FileUpload ID="fileAttachment" runat="server" CssClass="file-upload" />
-              <asp:Button ID="btnSubmit" runat="server" Text="Wyślij" CssClass="button" OnClick="btnSubmit_Click" />
-          </asp:Panel>
-        </div> -->
         <form method="post" action="wypozycz.php" enctype="multipart/form-data">
-          <label>Marka samochodu:</label><br>
+          <label>Marka samochodu</label><br>
           <input type="text" name="marka" required><br><br>
-          <label>Zdjęcie samochodu:</label><br>
+          <label>Zdjęcie samochodu</label><br>
           <input type="file" name="zdjecie" required><br><br>
-          <label>Koszt za dzień:</label><br>
-          <input type="number" name="koszt" min="1" required><br><br>
-          <label>Data zaczęcia wypożyczenia:</label><br>
-          <input type="date" name="data" required><br><br>
-          <label>Kontakt:</label><br>
-          <input type="text" name="kontakt" required><br><br>
-          <label>Opis(dodatkowy):</label><br>
-          <input type="text" name="opis" required><br><br>
-          <input type="submit" value="Wyślij">
+
+          <table border="5" style="margin: auto;" width="50%">
+            <tr>
+            <td VALIGN=top>
+            <p><strong>Specyfikacja Samochodu</strong></p>
+            <label>Moc:</label><br>
+            <input type="text" name="moc" required><br><br>
+            <label>Pojemność skokowa (silnik):</label><br>
+            <input type="text" name="pojemnosc" required><br><br>
+            <label>Rodzaj paliwa:</label><br>
+            <input type="text" name="paliwo" required><br><br>
+            <label>Skrzynia biegów:</label><br>
+            <input type="text" name="skrzynia" required><br><br>
+            <label>Napęd:</label><br>
+            <input type="text" name="naped" required><br><br>
+            <label>Rok produkcji:</label><br>
+            <input type="number" name="rokprodukcji" required><br><br>
+            </td>
+            <td VALIGN=top>
+            <p><strong>Specyfikacja wynajmu</strong></p>
+            <label>Koszt za dobę:</label><br>
+            <input type="number" name="koszt" min="1" required><br><br>
+            <label>Data zaczęcia wypożyczenia:</label><br>
+            <input type="date" name="data" required><br><br>
+            <label>Kontakt:</label><br>
+            <input type="text" name="kontakt" required><br><br>
+            <label>Opis(dodatkowy):</label><br>
+            <input type="text" name="opis" required><br><br>
+            </td>
+            </tr>
+          </table><br><br>
+          <input type="submit" value="Stwórz ofertę">
       </form>
     </section>
   </main>
