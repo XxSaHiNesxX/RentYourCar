@@ -26,7 +26,7 @@ if($conn->connect_error) {
     <img src="img/logo.png" alt="Logo">
     <nav>
       <ul>
-        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="index.php">Strona główna</a></li>
         <li><a href="aktoferty.php">Aktualna oferta</a></li>
         <li><a href="addoferte.html">Dodaj oferte</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
@@ -42,7 +42,7 @@ if($conn->connect_error) {
       <div class="col-sm-8">
         <?php echo isset($deleteMsg) ? $deleteMsg : ''; ?>
         <?php
-        $sql = "SELECT * FROM wypozyczenia";
+        $sql = "SELECT * FROM wypozyczenia ORDER BY data DESC";
         $result = $conn->query($sql);
         if ($result && $result->num_rows > 0) {
           while ($data = $result->fetch_assoc()) {
