@@ -15,14 +15,13 @@ if ($conn->connect_error) {
 $login = $_POST['login'];
 $haslo = $_POST['haslo'];
 
-// Zapytanie SQL w celu weryfikacji danych logowania
-$sql = "SELECT * FROM uzytkownicy WHERE login='$login' AND haslo='$haslo'";
-$result = $conn->query($sql);
+// Wstawienie danych do bazy danych
+$sql = "INSERT INTO uzytkownicy (login, haslo) VALUES ('$login', '$haslo')";
 
-if ($result->num_rows > 0) {
-    echo "Zalogowano pomyślnie!";
+if ($conn->query($sql) === TRUE) {
+echo "Zarejestrowano pomyślnie!";
 } else {
-    echo "Błędny login lub hasło.";
+echo "Błąd rejestracji: " . $conn->error;
 }
 
 $conn->close();
