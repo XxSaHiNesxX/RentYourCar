@@ -1,8 +1,8 @@
 <?php
 $servername = "mysql1.ugu.pl";
-$username = "db700630";
+$username = "db700694";
 $password = "projektag";
-$dbname = "db700630";
+$dbname = "db700694";
 
 // połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,6 +11,33 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn->connect_error) {
     die("Nieudane połączenie: " . $conn->connect_error);
 }
+
+// Blokowanie terminów
+$start_date = $_POST['datarozpoczecia'];
+$end_date = $_POST['datazakonczenia'];
+$id = $_POST['id'];
+
+// Sprawdzenie, czy termin jest dostępny dla danego artykułu
+$sql = "SELECT * FROM wypozyczenia WHERE id != $id AND datarozpoczecia <= '$end_date' AND datazakonczenia >= '$start_date'";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    // Termin jest zajęty dla danego artykułu, wyświetl komunikat o błędzie
+    echo "Termin od $start_date do $end_date jest już zajęty dla tego artykułu. Proszę wybrać inny termin.";
+} else {
+    // Termin jest dostępny, możesz kontynuować proces blokowania dla danego artykułu
+
+    // Zapisz dane do bazy danych
+    $sql = "INSERT INTO wypozyczenia (id, datarozpoczecia, datazakonczenia) VALUES ($id, '$start_date', '$end_date')";
+    if ($conn->query($sql) === TRUE) {
+        // Wyświetlenie komunikatu o pomyślnym blokowaniu terminu
+        echo "Termin od $start_date do $end_date został zablokowany dla artykułu o id: $id.";
+    } else {
+        // W przypadku błędu zapisu do bazy danych
+        echo "Wystąpił błąd podczas zapisywania danych do bazy danych.";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +53,7 @@ if($conn->connect_error) {
     <img src="img/logo.png" alt="Logo">
     <nav>
       <ul>
-        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="index.php">Strona główna</a></li>
         <li><a href="aktoferty.php">Aktualna oferta</a></li>
         <li><a href="addoferte.html">Dodaj oferte</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
@@ -65,12 +92,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "<p>Rok produkcji: " . $data['rokprodukcji'] . "</p>";
       echo "<h4>Szczegóły wynajmu</h4>";
       echo "<p>Koszt: " . $data['koszt'] . "</p>";
-      echo "<p>Data: " . $data['data'] . "</p>";
-      echo "<p>Kontakt: " . $data['Kontakt'] . "</p>";
+      echo "<p>Kontakt: " . $data['kontakt'] . "</p>";
       echo "<p>Dodatkowe informacje: " . $data['opis'] . "</p>";
   } else {
       echo "<p>Nie znaleziono wybranego artykułu.</p>";
-  }}
+  }}     
         ?>
 
       </div>

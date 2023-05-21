@@ -1,8 +1,8 @@
 <?php
 $servername = "mysql1.ugu.pl";
-$username = "db700630";
+$username = "db700694";
 $password = "projektag";
-$dbname = "db700630";
+$dbname = "db700694";
 
 // połączenie z bazą danych
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,7 +19,7 @@ if($conn->connect_error) {
   <link rel="stylesheet" href="css/style.css">
   <title>RentMyCar - Aktualna Oferta</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="wdatarozpoczeciath=device-wdatarozpoczeciath, initial-scale=1.0">
 </head>
 <body>
 <header>
@@ -28,7 +28,7 @@ if($conn->connect_error) {
       <ul>
         <li><a href="index.php">Strona główna</a></li>
         <li><a href="aktoferty.php">Aktualna oferta</a></li>
-        <li><a href="addoferte.html">Dodaj oferte</a></li>
+        <li><a href="logreje.html">Dodaj oferte</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
     </nav>
@@ -42,23 +42,26 @@ if($conn->connect_error) {
       <div class="col-sm-8">
         <?php echo isset($deleteMsg) ? $deleteMsg : ''; ?>
         <?php
-        $sql = "SELECT * FROM wypozyczenia ORDER BY data DESC";
+        $sql = "SELECT * FROM wypozyczenia ORDER BY datarozpoczecia DESC";
         $result = $conn->query($sql);
         if ($result && $result->num_rows > 0) {
-          while ($data = $result->fetch_assoc()) {
+          while ($datarozpoczecia = $result->fetch_assoc()) {
         ?>
             <article>
-              <h3><?= isset($data['marka']) ? $data['marka'] : '' ?></h3>
-              <img src="<?= isset($data['zdjecie']) ? $data['zdjecie'] : '' ?>" alt="Zdjęcie">
-              <p>Moc: <?= isset($data['moc']) ? $data['moc'] : '' ?></p>
-              <p>Pojemność skokowa (silnik): <?= isset($data['pojemnosc']) ? $data['pojemnosc'] : '' ?></p>
-              <p>Rodzaj paliwa: <?= isset($data['paliwo']) ? $data['paliwo'] : '' ?></p>
-              <p>Skrzynia biegów: <?= isset($data['skrzynia']) ? $data['skrzynia'] : '' ?></p>
-              <p>Napęd: <?= isset($data['naped']) ? $data['naped'] : '' ?></p>
-              <p>Rok produkcji: <?= isset($data['rokprodukcji']) ? $data['rokprodukcji'] : '' ?></p>
-              <p>Dodatkowe informacje: <?= isset($data['opis']) ? $data['opis'] : '' ?></p>
+              <h3><?= isset($datarozpoczecia['marka']) ? $datarozpoczecia['marka'] : '' ?></h3>
+              <img src="<?= isset($datarozpoczecia['zdjecie']) ? $datarozpoczecia['zdjecie'] : '' ?>" alt="Zdjęcie">
+              <p>Moc: <?= isset($datarozpoczecia['moc']) ? $datarozpoczecia['moc'] : '' ?></p>
+              <p>Pojemność skokowa (silnik): <?= isset($datarozpoczecia['pojemnosc']) ? $datarozpoczecia['pojemnosc'] : '' ?></p>
+              <p>Rodzaj paliwa: <?= isset($datarozpoczecia['paliwo']) ? $datarozpoczecia['paliwo'] : '' ?></p>
+              <p>Skrzynia biegów: <?= isset($datarozpoczecia['skrzynia']) ? $datarozpoczecia['skrzynia'] : '' ?></p>
+              <p>Napęd: <?= isset($datarozpoczecia['naped']) ? $datarozpoczecia['naped'] : '' ?></p>
+              <p>Rok produkcji: <?= isset($datarozpoczecia['rokprodukcji']) ? $datarozpoczecia['rokprodukcji'] : '' ?></p>
+              <p>Dodatkowe informacje: <?= isset($datarozpoczecia['opis']) ? $datarozpoczecia['opis'] : '' ?></p>
               <form method="POST" action="wynajmnij.php">
-                <input type="hidden" name="marka" value="<?= isset($data['marka']) ? $data['marka'] : '' ?>">
+                <label>Data rozpoczęcia:</label>
+                <input type="date" name="datarozpoczecia" required><br></br>
+                <label>Data zakończenia:</label>
+                <input type="date" name="datazakonczenia" required><br></br>
                 <button type="submit">Zarezerwuj</button>
               </form>
             </article>

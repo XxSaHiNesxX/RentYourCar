@@ -1,9 +1,9 @@
 <?php
 // Połączenie z bazą danych
 $servername = "mysql1.ugu.pl";
-$username = "db700630";
+$username = "db700694";
 $password = "projektag";
-$dbname = "db700630";
+$dbname = "db700694";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Ustawienie kodowania na UTF-8
