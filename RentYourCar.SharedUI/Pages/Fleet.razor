@@ -1,0 +1,94 @@
+﻿@page "/flota"
+@using RentYourCar.Database.Entities;
+<PageTitle>Flota</PageTitle>
+@if (CarRents != null && CarRents.Count() > 0)
+{
+    <div class="row cars">
+        <p>Wybierz do kiedy chcesz zarezerwować samochód:</p>
+        <RadzenDatePicker @bind-Value="@ReserveDate"></RadzenDatePicker>
+    @foreach (var car in CarRents)
+    {
+        <div class="col col-12 col-md-4">
+            <div class="car">
+                <img src="@car.PhotoUrl"/>
+                <div class="infos">
+                        <p>@car.Model</p>
+                        <p>@car.Mark.ToString()</p>
+                        <p>@car.Power</p>
+                        <p>@car.Capacity</p>
+                        <p>@car.Fuel.ToString()</p>
+                        <p>@car.Gear.ToString()</p>
+                        <p>@car.Price / Day</p>
+                        <p>@car.Contact</p>
+                        <p>@car.Description</p>
+                </div>
+                <RadzenButton Text="Zarezerwuj" Click="@(args => ReserveCar(car.Id))"></RadzenButton>
+            </div>
+
+        </div>
+    }
+    </div>
+}
+else
+{
+    <RadzenProgressBar Value="100" ShowValue="false" Mode="ProgressBarMode.Indeterminate" />
+}
+<div class="row fleet-add">
+    <EditForm Model="@NewCartToRent" OnSubmit="@AddNewCarRent">
+        <div class="row">
+            <div class="col col-12 col-md-4">
+                <p>Marka</p>
+                <RadzenDropDown Data="@(Enum.GetValues(typeof(Mark)).Cast<Enum>())" @bind-Value="@NewCartToRent.Mark">
+
+                </RadzenDropDown>
+                <p>Model</p>
+                <RadzenTextBox @bind-Value="@NewCartToRent.Model">
+
+                </RadzenTextBox>
+                <p>Paliwo</p>
+                <RadzenDropDown Data="@(Enum.GetValues(typeof(Fuel)).Cast<Enum>())" @bind-Value="@NewCartToRent.Fuel">
+
+                </RadzenDropDown>
+                <p>Skrzynia biegów</p>
+                <RadzenDropDown Data="@(Enum.GetValues(typeof(Gear)).Cast<Enum>())" @bind-Value="@NewCartToRent.Gear">
+
+                </RadzenDropDown>
+
+            </div>
+            <div class="col col-12 col-md-4">
+                <p>Cena za dzień</p>
+                <RadzenNumeric @bind-Value="@NewCartToRent.Price" Format="C">
+
+                </RadzenNumeric>
+                <p>Moc</p>
+                <RadzenNumeric @bind-Value="@NewCartToRent.Power">
+
+                </RadzenNumeric>
+                <p>Pojemność</p>
+                <RadzenNumeric @bind-Value="@NewCartToRent.Capacity">
+
+                </RadzenNumeric>
+            </div>
+            <div class="col col-12 col-md-4">
+                <p>Kontakt</p>
+                <RadzenTextBox @bind-Value="@NewCartToRent.Contact">
+
+                </RadzenTextBox>
+                <p>Opis</p>
+                <RadzenTextArea @bind-Value="@NewCartToRent.Description">
+
+                </RadzenTextArea>
+                <p>Zdjęcie</p>
+                <RadzenFileInput @bind-Value=@NewCartToRent.PhotoUrl TValue="string" class="w-100"
+                />
+
+            </div>
+            <div class="row buttons">
+                <RadzenButton Icon="save" ButtonType="@ButtonType.Submit"></RadzenButton>
+                <RadzenButton Icon="cancel" ButtonType="@ButtonType.Reset"></RadzenButton>
+            </div>
+
+        </div>
+    </EditForm>
+</div>
+
